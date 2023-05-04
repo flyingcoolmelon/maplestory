@@ -1,16 +1,18 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class charater extends StatelessWidget {
-  final int characterspritecount;
-  final String characterdirection;
+class Character extends StatelessWidget {
+  final int characterSpriteCount;
+  final String characterDirection;
 
-  charater(
-      {required this.characterspritecount, required this.characterdirection});
+  Character(
+      {super.key,
+      required this.characterSpriteCount,
+      required this.characterDirection});
 
   @override
   Widget build(BuildContext context) {
-    if (characterdirection == 'left') {
+    if (characterDirection == 'left') {
       return Transform(
         alignment: Alignment.center,
         transform: Matrix4.rotationY(pi), //旋轉180度
@@ -18,7 +20,7 @@ class charater extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           height: 75,
           width: 25,
-          child: Image.asset('img/character$characterspritecount.png'),
+          child: Image.asset('img/character$characterSpriteCount.png'),
         ),
       );
     } else {
@@ -27,7 +29,7 @@ class charater extends StatelessWidget {
         color: Colors.red,
         height: 75,
         width: 25,
-        child: Image.asset('img/character$characterspritecount.png'),
+        child: Image.asset('img/character$characterSpriteCount.png'),
       );
     }
   }
