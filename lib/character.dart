@@ -24,6 +24,7 @@ class charater extends StatelessWidget {
     } else {
       return Container(
         alignment: Alignment.bottomCenter,
+        color: Colors.red,
         height: 75,
         width: 25,
         child: Image.asset('img/character$characterspritecount.png'),
