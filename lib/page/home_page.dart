@@ -2,9 +2,12 @@ import "package:flutter/material.dart";
 import 'dart:async';
 import 'package:applestory/controller/character.dart';
 import 'package:applestory/controller/bluesnail.dart';
-import 'package:applestory/components/button.dart';
+import 'package:applestory/components/button_row.dart';
+import '';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,6 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,9 +28,10 @@ class _HomePageState extends State<HomePage> {
   //bool
   bool isMoveLeft = false;
   //blue snail
-  int snailSpriteCount = 1;
+  int snailSpriteCount = 1; //1~4 蝸牛的精靈圖序號
+  String snailDirection = 'left'; //蝸牛面對方向
   double snailPosX = 0.5;
-  String snailDirection = 'left';
+
   //character
   int characterSpriteCount = 1;
   double characterPox = -0.5;
@@ -33,6 +39,31 @@ class _HomePageState extends State<HomePage> {
 
   void startGame() {
     moveSnail();
+  }
+
+  void moveSnail() {
+    //蝸牛移動
+    Timer.periodic(const Duration(milliseconds: 200), (timer) {
+      //每150milliseconds會執行以下動作
+      setState(() {
+        snailSpriteCount++;
+        if (snailDirection == 'left') {
+          snailPosX -= 0.02;
+        } else {
+          snailPosX += 0.02;
+        }
+
+        if (snailPosX < 0.3) {
+          snailDirection = 'right';
+        } else if (snailPosX > 0.6) {
+          snailDirection = 'left';
+        }
+
+        if (snailSpriteCount == 5) {
+          snailSpriteCount = 1;
+        }
+      });
+    });
   }
 
   void moveLeft() {
@@ -65,31 +96,6 @@ class _HomePageState extends State<HomePage> {
 
   void jump() {}
 
-  void moveSnail() {
-    //蝸牛移動
-    Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      //每150milliseconds會執行以下動作
-      setState(() {
-        snailSpriteCount++;
-        if (snailDirection == 'left') {
-          snailPosX -= 0.02;
-        } else {
-          snailPosX += 0.02;
-        }
-
-        if (snailPosX < 0.3) {
-          snailDirection = 'right';
-        } else if (snailPosX > 0.6) {
-          snailDirection = 'left';
-        }
-
-        if (snailSpriteCount == 5) {
-          snailSpriteCount = 1;
-        }
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -105,9 +111,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         alignment: Alignment(snailPosX, 1),
-                        child: bluesnail(
-                          snaildirection: snailDirection,
-                          snailspritecount: snailSpriteCount,
+                        child: blueSnail(
+                          snailDirection: snailDirection,
+                          snailSpriteCount: snailSpriteCount,
                         ),
                       ),
                       Container(
@@ -129,54 +135,7 @@ class _HomePageState extends State<HomePage> {
               //地板
               child: Container(
                 color: Colors.brown[600],
-                //     child: Column(
-                child:
-                    // Text('apple stort'),
-                    Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MyButton(
-                      text: '←',
-                      onTapUp: (isMove) {
-                        setState(() {
-                          isMoveLeft = isMove;
-                        });
-                        while (isMoveLeft) {
-                          moveLeft();
-                        }
-                      },
-                      onTapDown: (isMove) {
-                        setState(() {
-                          isMoveLeft = isMove;
-                        });
-                      },
-                    ),
-                    // MyButton(
-                    //   text: '→',
-                    //   function: () {
-                    //     moveright();
-                    //   },
-                    // ),
-                    // MyButton(
-                    //   text: '↑',
-                    //   function: () {
-                    //     jump();
-                    //   },
-                    // ),
-                    // MyButton(
-                    //   text: 'start',
-                    //   function: () {
-                    //     startGame();
-                    //   },
-                    // ),
-                    // MyButton(
-                    //   text: 'b5',
-                    //   function: () {},
-                    // )
-                  ],
-                ),
-
-                //    ),
+                child: ButtonRow(),
               ),
             ),
           ],

@@ -20,21 +20,20 @@ class MyButton extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTapDown: onTapDown(isMove = true),
-
         onTapUp: onTapUp(isMove = false),
         //onTapUp: function,
         //      onLongPressCancel: () {},
-        // child: ClipRRect(
-        //   borderRadius: BorderRadius.circular(15),
-        //   child: Container(
-        //     padding: const EdgeInsets.all(20),
-        //     color: Colors.grey[700],
-        //     child: Center(
-        //       child: Text(text, style: const TextStyle(color: Colors.white)),
-        //     ),
-        //   ),
-        // ),
-        child: const Text('aaa'),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            color: Colors.grey[700],
+            child: Center(
+              child: Text(text, style: const TextStyle(color: Colors.white)),
+            ),
+          ),
+        ),
+        //child: const Text('aaa'),
       ),
     );
   }
