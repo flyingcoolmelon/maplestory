@@ -1,18 +1,15 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:applestory/models/character_model.dart';
 
-class Character extends StatelessWidget {
-  final int characterSpriteCount;
-  final String characterDirection;
+class CharacterWidget extends StatelessWidget {
+  Character character;
 
-  Character(
-      {super.key,
-      required this.characterSpriteCount,
-      required this.characterDirection});
+  CharacterWidget({super.key, required this.character});
 
   @override
   Widget build(BuildContext context) {
-    if (characterDirection == 'left') {
+    if (character.characterDirection == 'left') {
       return Transform(
         alignment: Alignment.center,
         transform: Matrix4.rotationY(pi), //旋轉180度
@@ -20,7 +17,8 @@ class Character extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           height: 75,
           width: 25,
-          child: Image.asset('img/character$characterSpriteCount.png'),
+          child:
+              Image.asset('img/character${character.characterSpriteCount}.png'),
         ),
       );
     } else {
@@ -29,7 +27,8 @@ class Character extends StatelessWidget {
         color: Colors.red,
         height: 75,
         width: 25,
-        child: Image.asset('img/character$characterSpriteCount.png'),
+        child:
+            Image.asset('img/character${character.characterSpriteCount}.png'),
       );
     }
   }

@@ -3,7 +3,6 @@ import 'package:applestory/components/button.dart';
 
 class ButtonRow extends StatelessWidget {
   const ButtonRow({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -11,7 +10,8 @@ class ButtonRow extends StatelessWidget {
       children: [
         MyButton(
           text: '←',
-          onTapUp: (isMove) {
+          onPressed: () {
+            print('abb');
             // setState(() {
             //   isMoveLeft = isMove;
             // });
@@ -19,22 +19,17 @@ class ButtonRow extends StatelessWidget {
             //   moveLeft();
             // }
           },
-          onTapDown: (isMove) {
-            // setState(() {
-            //   isMoveLeft = isMove;
-            // });
-          },
         ),
-        MyButton(
-          text: '→',
-          onTapDown: (context) {},
-          onTapUp: (context) {},
-        ),
-        MyButton(
-          text: '↑',
-          onTapDown: (context) {},
-          onTapUp: (context) {},
-        ),
+        // MyButton(
+        //   text: '→',
+        //   onTap: (context) {},
+        //   onTapUp: (context) {},
+        // ),
+        // MyButton(
+        //   text: '↑',
+        //   onTap: (context) {},
+        //   onTapUp: (context) {},
+        // ),
         // MyButton(
         //   text: 'start',
         //   onTapDown: () {},

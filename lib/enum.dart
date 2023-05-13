@@ -1,0 +1,1 @@
+enum MoveDirection { left, right }

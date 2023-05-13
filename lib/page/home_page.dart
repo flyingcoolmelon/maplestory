@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import 'dart:async';
-import 'package:applestory/controller/character.dart';
+import 'package:applestory/controller/character_widget.dart';
 import 'package:applestory/controller/bluesnail.dart';
 import 'package:applestory/components/button_row.dart';
-import '';
+import 'package:applestory/models/character_model.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -119,9 +119,15 @@ class _HomePageState extends State<HomePage> {
                       Container(
                           alignment: Alignment(characterPox, 1),
                           child: FittedBox(
-                            child: Character(
-                              characterSpriteCount: characterSpriteCount,
+                            child: CharacterWidget(
+                              character: Character(
+                                  characterSpriteCount: characterSpriteCount,
+                                  characterDirection: characterDirection,
+                                  characterPosX: 0.5),
+
+                              /*characterSpriteCount: characterSpriteCount,
                               characterDirection: characterDirection,
+                              character: null,*/
                             ),
                           ))
                     ],
