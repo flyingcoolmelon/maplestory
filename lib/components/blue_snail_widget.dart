@@ -1,19 +1,20 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:applestory/models/blue_snail.dart';
+import 'package:applestory/constants.dart';
 
-class bluesnail extends StatelessWidget {
-  final int snailspritecount; //1~4 蝸牛的精靈圖序號
-  final String snaildirection; //蝸牛面對方向
+class BlueSnailWidget extends StatelessWidget {
+  final BlueSnail blueSnail;
+  const BlueSnailWidget({super.key, required this.blueSnail});
 
-  bluesnail({required this.snailspritecount, required this.snaildirection});
   @override
   Widget build(BuildContext context) {
-    if (snaildirection == 'left') {
+    if (blueSnail.direction == Directions.left) {
       return Container(
         alignment: Alignment.bottomCenter,
         height: 50,
         width: 50,
-        child: Image.asset('img/bluesnail$snailspritecount.png'),
+        child: Image.asset('img/bluesnail${blueSnail.spriteCount}.png'),
       );
     } else {
       return Transform(
@@ -23,7 +24,7 @@ class bluesnail extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           height: 50,
           width: 50,
-          child: Image.asset('img/bluesnail$snailspritecount.png'),
+          child: Image.asset('img/bluesnail${blueSnail.spriteCount}.png'),
         ),
       );
     }
