@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:applestory/models/blue_snail.dart';
+import 'package:applestory/models/character.dart';
 import 'package:applestory/constants.dart';
 
 class BlueSnailWidget extends StatelessWidget {
-  final BlueSnail blueSnail;
+  final Character blueSnail;
   const BlueSnailWidget({super.key, required this.blueSnail});
 
   @override

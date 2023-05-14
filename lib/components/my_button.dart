@@ -11,7 +11,6 @@ class MyButton extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: function,
-        onLongPress: function,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: Container(
