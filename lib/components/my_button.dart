@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class MyButton extends StatelessWidget {
   final String text;
   final VoidCallback function;
-  const MyButton({super.key, required this.text, required this.function});
+  final void Function(TapUpDetails?)? onTapUp;
+  final void Function(TapDownDetails?)? onTapDown;
+  const MyButton(
+      {super.key,
+      required this.text,
+      required this.function,
+      this.onTapUp,
+      this.onTapDown});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +18,8 @@ class MyButton extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: function,
+        onTapUp: onTapUp,
+        onTapDown: onTapDown,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: Container(

@@ -3,35 +3,52 @@ import 'package:applestory/constants.dart';
 import 'dart:async';
 
 class Movements {
-  void moveLeft({required Character character}) {
-    character.position -= 0.03;
-    character.spriteCount++;
-    character.direction = Directions.left;
+  bool _isMove = false;
+  static void moveLeft({required Character character}) {
+    Timer.periodic(const Duration(milliseconds: 200), (moveLefttimer) {
+      character.position -= 0.03;
+      character.spriteCount == 1
+          ? character.spriteCount++
+          : character.spriteCount--;
+      character.direction = Directions.left;
+    });
   }
 
-  void moveRight({required Character character}) {
-    character.position += 0.01;
-    character.spriteCount == 1 ? character.spriteCount++ : character.spriteCount--;
-    character.direction = Directions.right;
+  static void moveRight({required Character character}) {
+    Timer.periodic(const Duration(milliseconds: 200), (moveRighttimer) {
+      character.position += 0.03;
+      character.spriteCount == 1
+          ? character.spriteCount++
+          : character.spriteCount--;
+      character.direction = Directions.right;
+      if (_isMove) {
+        moveRighttimer.cancel();
+      }
+    });
   }
-  void snailMove({required Character blueSnail}) {
+
+  static bool stopMoving() {
+    return true;
+  }
+
+  static void snailMove({required Character blueSnail}) {
     Timer.periodic(const Duration(milliseconds: 200), (timer) {
-        blueSnail.spriteCount++;
-        if (blueSnail.direction == Directions.left) {
-          blueSnail.position -= 0.02;
-        } else {
-          blueSnail.position += 0.02;
-        }
+      blueSnail.spriteCount++;
+      if (blueSnail.direction == Directions.left) {
+        blueSnail.position -= 0.02;
+      } else {
+        blueSnail.position += 0.02;
+      }
 
-        if (blueSnail.position < 0.3) {
-          blueSnail.direction = Directions.right;
-        } else if (blueSnail.position > 0.6) {
-          blueSnail.direction = Directions.left;
-        }
+      if (blueSnail.position < 0.3) {
+        blueSnail.direction = Directions.right;
+      } else if (blueSnail.position > 0.6) {
+        blueSnail.direction = Directions.left;
+      }
 
-        if (blueSnail.spriteCount == 5) {
-          blueSnail.spriteCount = 1;
-        }
+      if (blueSnail.spriteCount == 5) {
+        blueSnail.spriteCount = 1;
+      }
     });
   }
 }

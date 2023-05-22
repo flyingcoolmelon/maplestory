@@ -6,6 +6,7 @@ import 'package:applestory/components/blue_snail_widget.dart';
 import 'package:applestory/models/character.dart';
 import 'package:applestory/constants.dart';
 import 'package:applestory/models/movement.dart';
+import 'package:flutter/cupertino.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -38,6 +39,7 @@ class _HomepageState extends State<Homepage> {
           Expanded(
             flex: 3,
             child: Container(
+              //天空
               color: Colors.blue[300],
               child: Stack(
                 children: [
@@ -56,11 +58,13 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
           Container(
+            //草地
             height: 10,
             color: Colors.green[600],
           ),
           Expanded(
             child: Container(
+              //地板
               color: Colors.brown[600],
               child: Column(
                 children: [
@@ -70,21 +74,37 @@ class _HomepageState extends State<Homepage> {
                       MyButton(
                         text: '←',
                         function: () {
-
+                          print('a');
+                          print(character.position);
+                        },
+                        onTapDown: (context) {
+                          Movements.moveLeft(character: character);
+                          print("tapdown");
                         },
                       ),
                       MyButton(
                         text: '→',
-                        function: () {},
+                        function: () {
+                          print("tap");
+                        },
+                        onTapUp: (context) {
+                          print("tapup");
+                          Movements.stopMoving();
+                        },
+                        onTapDown: (context) {
+                          Movements.moveRight(character: character);
+                          print("tapdown");
+                        },
                       ),
                       MyButton(
                         text: '↑',
-                        function: () {},
+                        function: () {
+                          Movements.snailMove(blueSnail: blueSnail);
+                        },
                       ),
                       MyButton(
                         text: 'start',
-                        function: () {
-                        },
+                        function: () {},
                       ),
                       MyButton(
                         text: 'b5',
